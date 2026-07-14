@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Kichu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <canvas id="stars"></canvas>
+    <div class="grain"></div>
+
+    <!-- Progress Tracker Dots -->
+    <div class="constellation-tracker" aria-hidden="true">
+        <svg viewBox="0 0 200 40" id="tracker-svg">
+            <line x1="20" y1="20" x2="180" y2="20" class="tracker-line" />
+            <circle cx="20" cy="20" r="4" class="tracker-dot active" data-dot="0"/>
+            <circle cx="60" cy="20" r="4" class="tracker-dot" data-dot="1"/>
+            <circle cx="100" cy="20" r="4" class="tracker-dot" data-dot="2"/>
+            <circle cx="140" cy="20" r="4" class="tracker-dot" data-dot="3"/>
+            <circle cx="180" cy="20" r="4" class="tracker-dot" data-dot="4"/>
+        </svg>
+    </div>
+
+    <main id="scroll-container">
+        
+        <!-- 0. OPENER -->
+        <section class="panel panel-opener active" id="panel-0">
+            <div class="panel-content">
+                <p class="eyebrow">For you, always</p>
+                <h1 class="opener-title">I'm missing you <br><span class="script">Kichu</span></h1>
+                <button class="begin-btn" id="begin-btn"><span>Begin Story</span></button>
+            </div>
+            <div class="scroll-hint">Scroll to explore</div>
+        </section>
+
+        <!-- 1. PROMISE 1 -->
+        <section class="panel" id="panel-1">
+            <div class="panel-content">
+                <p class="eyebrow">Promise One</p>
+                <p class="promise-line">I don't know what tomorrow holds,<br>but I know who I want beside me.</p>
+                <div class="photo-frame">
+                    <img src="photo1.jpg" alt="Our Moment">
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. PROMISE 2 + WAX SEAL -->
+        <section class="panel" id="panel-2">
+            <div class="panel-content">
+                <p class="eyebrow">Promise Two</p>
+                <p class="promise-line">I promise to choose you — not just today on the easy days, but on the hard ones too.</p>
+                
+                <div class="interactive-container">
+                    <!-- Wax Seal Widget -->
+                    <div class="seal-widget" id="seal-widget">
+                        <p class="instruction-text">Press and hold the seal to bind this promise</p>
+                        <div class="seal-stamp" id="seal-stamp">
+                            <svg class="seal-ring-svg" viewBox="0 0 100 100">
+                                <circle class="seal-ring" cx="50" cy="50" r="46"/>
+                                <circle class="seal-progress" id="seal-progress" cx="50" cy="50" r="46"/>
+                            </svg>
+                            <div class="seal-icon">❤</div>
+                        </div>
+                    </div>
+
+                    <!-- Revealed Video/Photo after interaction -->
+                    <div class="reveal-container hidden" id="seal-reveal">
+                        <div class="photo-frame text-center">
+                            <video playsinline loop autoplay muted class="reveal-media">
+                                <source src="seal-video.mp4" type="video/mp4">
+                            </video>
+                            <p class="reveal-caption script">“Whatever changes, whatever we become — this stays the same.”</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PROMISE 3 + LOCKET -->
+        <section class="panel" id="panel-3">
+            <div class="panel-content">
+                <p class="eyebrow">Promise Three</p>
+                <p class="promise-line">You're not just my today.<br>You're every version of my someday.</p>
+                
+                <div class="interactive-container">
+                    <!-- Locket Widget -->
+                    <div class="locket-widget" id="locket-widget">
+                        <p class="instruction-text">Tap the heart to unlock the memory inside</p>
+                        <div class="locket" id="locket-clickable">
+                            <div class="locket-chain"></div>
+                            <div class="locket-shell">
+                                <div class="locket-face-front">
+                                    <div class="locket-heart"></div>
+                                </div>
+                                <div class="locket-face-back">
+                                    <div class="locket-inside">
+                                        <video playsinline loop autoplay muted id="locket-video">
+                                            <source src="locket-video.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. FINAL PROMISE & HER TURN -->
+        <section class="panel" id="panel-4">
+            <div class="panel-content">
+                <p class="eyebrow">My Forever Promise</p>
+                <h2 class="promise-line-big">“And no matter what, I am never ever gonna give up on you. I only want you, my Kichu — you are my whole world, my Kichu, my world.”</h2>
+                
+                <hr class="elegant-divider">
+
+                <!-- Interactive Reply Form -->
+                <div class="her-turn-container" id="reply-section">
+                    <p class="eyebrow script">Now it's your turn...</p>
+                    <p class="instruction-text">Leave a promise of your own here, love...</p>
+                    <textarea id="her-input" maxlength="240" placeholder="Write it here..."></textarea>
+                    <button class="begin-btn" id="submit-promise"><span>Seal it with a kiss</span></button>
+                </div>
+
+                <!-- Closing Note (Hidden until submitted) -->
+                <div class="closing-panel hidden" id="closing-note">
+                    <div class="her-promise-display" id="submitted-promise-text"></div>
+                    <p class="closing-line">Five promises, made under the same stars that have watched over every version of us.</p>
+                    <p class="closing-sign">Always, your Jeevan <span class="heart-mark">❤</span></p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
